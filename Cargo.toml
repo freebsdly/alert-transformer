@@ -1,0 +1,15 @@
+[package]
+name = "alert-transformer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["tracing"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tokio = { version = "1.41", features = ["full"] }
+tower = { version = "0.5", features = ["timeout"] }
+tower-http = { version = "0.6", features = ["timeout", "trace"] }
+serde = { version = "1.0", features = ["derive"] }
+thiserror = { version = "1.0"}
+anyhow = {version = "1.0"}
