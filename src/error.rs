@@ -1,22 +1,10 @@
-use std::io;
-use axum::BoxError;
-use axum::http::{Method, StatusCode, Uri};
-use thiserror::Error;
 use crate::common::ApiResponse;
+use axum::http::{Method, StatusCode, Uri};
+use axum::BoxError;
+use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum ApiError {
-    #[error("data store disconnected")]
-    Disconnect(#[from] io::Error),
-    #[error("the data for key `{0}` is not available")]
-    Redaction(String),
-    #[error("invalid header (expected {expected:?}, found {found:?})")]
-    InvalidHeader {
-        expected: String,
-        found: String,
-    },
-    #[error("unknown error")]
-    Unknown,
     #[error("internal error")]
     InternalError,
 }
@@ -30,6 +18,6 @@ pub async fn handle_error(
 ) -> (StatusCode, ApiResponse<String>) {
     (
         StatusCode::INTERNAL_SERVER_ERROR,
-        ApiResponse::new(-1, "failed".to_string(), Option::from(err.to_string()))
+        ApiResponse::new(-1, format!("{} {}failed", method, uri), Option::from(err.to_string()))
     )
 }
