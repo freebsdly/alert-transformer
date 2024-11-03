@@ -6,6 +6,16 @@ name = "alert-transformer"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "alert-transformer"
+test = false
+doc = false
+
+[lib]
+name = "server"
+path = "src/server/lib.rs"
+
+
 [dependencies]
 entity = {path = "entity"}
 migration = { path = "migration"}
@@ -20,3 +30,4 @@ serde = { version = "1.0", features = ["derive"] }
 thiserror = { version = "1.0"}
 anyhow = {version = "1.0"}
 sea-orm = { version = "1.1.0", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros", "debug-print" ] }
+config = "0.14.1"

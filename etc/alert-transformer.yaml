@@ -1,0 +1,10 @@
+
+api:
+  host: localhost
+  port: 8080
+  timeout: 20
+
+kafka:
+  brokers:
+    - localhost:9092
+  topic: cmdb-ci
