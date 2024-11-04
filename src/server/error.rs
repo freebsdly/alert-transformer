@@ -1,4 +1,4 @@
-use crate::common::ApiResponse;
+use crate::api::common::ApiResponse;
 use axum::http::{Method, StatusCode, Uri};
 use axum::BoxError;
 use thiserror::Error;

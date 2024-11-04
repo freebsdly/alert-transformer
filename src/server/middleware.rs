@@ -1,4 +1,4 @@
-use crate::common::ApiResponse;
+use crate::api::common::ApiResponse;
 use axum::http::{Method, StatusCode, Uri};
 
 pub async fn handler_404(method: Method, uri: Uri) -> (StatusCode, ApiResponse<String>) {

@@ -1,3 +1,4 @@
+use std::sync::Arc;
 use clap::Args;
 use tracing::info;
 use server::{Server, ServerArgs};
@@ -14,6 +15,6 @@ pub struct StartServerArgs {
 pub async fn start_server(args: StartServerArgs) -> Result<(), anyhow::Error> {
     info!("starting server using configuration: {:?}", args.path);
     let server_args = parse_settings::<ServerArgs>(&*args.path)?;
-    let server = Server::new(&server_args);
+    let server = Server::new(Arc::new(server_args)).await?;
     server.start().await
 }

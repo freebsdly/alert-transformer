@@ -4,7 +4,15 @@ api:
   port: 8080
   timeout: 20
 
-kafka:
+producer:
   brokers:
     - localhost:9092
   topic: cmdb-ci
+
+database:
+  type: postgres
+  host: localhost
+  port: 5432
+  name: demo_db
+  username: qinhuajun
+  password: Ring!201
