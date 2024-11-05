@@ -15,20 +15,33 @@ doc = false
 name = "server"
 path = "src/server/lib.rs"
 
+[workspace.dependencies]
+sea-orm = { version = "1.1.0", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros", "debug-print" ] }
+config = "0.14.1"
+log = "0.4.22"
+serde = { version = "1.0", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = { version = "1.0"}
+anyhow = {version = "1.0"}
+async-std = { version = "1", features = ["attributes", "tokio1"] }
+sea-orm-migration = {version = "1.1.0", features = ["runtime-tokio-rustls", "sqlx-postgres"]}
 
 [dependencies]
 entity = {path = "entity"}
 migration = { path = "migration"}
-clap = {version = "4.5.20", features = ["derive"]}
-axum = { version = "0.7", features = ["tracing", "macros"] }
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+tracing = {workspace = true}
+tracing-subscriber = {workspace = true}
+serde = { workspace = true }
+thiserror = { workspace = true}
+anyhow = {workspace = true}
+sea-orm = { workspace = true }
+config = {workspace = true}
+log = {workspace = true}
 tokio = { version = "1.41", features = ["full"] }
 tower = { version = "0.5", features = ["timeout"] }
 tower-http = { version = "0.6", features = ["timeout", "trace"] }
-serde = { version = "1.0", features = ["derive"] }
-thiserror = { version = "1.0"}
-anyhow = {version = "1.0"}
-sea-orm = { version = "1.1.0", features = [ "sqlx-postgres", "runtime-tokio-rustls", "macros", "debug-print" ] }
-config = "0.14.1"
-log = "0.4.22"
+clap = {version = "4.5.20", features = ["derive"]}
+axum = { version = "0.7", features = ["tracing", "macros"] }
+
